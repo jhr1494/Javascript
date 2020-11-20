@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        var num1 = 1;
+        var num2 = 2;
+
+        if(num1 > num2 && true){
+            document.write("참 입니다<br>");
+        } else {
+            document.write("거짓 입니다<br>");
+        }
+
+        //0~1미만 랜덤 수 Math.random()
+        console.log(Math.random());
+
+        //캐스팅 방식(ex (int))이 안되며 parseInt를 사용하여 정수형으로 변환
+        var point = parseInt( Math.random() * 101);
+        console.log(point); 
+
+        if(point >= 90){
+
+            if(point >= 95){
+                console.log("A");
+            } else {
+                console.log("B");
+            }
+        
+        }else if(point >= 80){
+            console.log("C");
+        }else{
+            console.log("D");
+        }
+
+        console.log("---------------------");
+        
+        //JS에서의 문자열 비교 -- equls를 사용하지 않고 동등비교자(==)를 사용
+        var name = "홍길동";
+        if(name == "홍길동"){
+            console.log("홍길동이 맞습니다");
+        }
+
+        console.log("---------------------");
+
+        //switch문 - 자바와 동일
+        switch(name){
+            case "홍길동" :
+                console.log("홍길동이 맞습니다");
+                break; // 종료
+            case "이순신" :
+                console.log("이순신이 맞습니다");
+                break; // 종료
+
+            default :
+                console.log("둘다 아닙니다");
+                break; // 종료
+        }
+
+        console.log("---------------------");
+        
+
+
+
+    </script>
+
+</body>
+</html>

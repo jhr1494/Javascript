@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button type="button" onclick="check()">클릭</button>
+    <button type="button" onclick="method(2)">홀짝수를 판별하는 함수</button>
+
+    <script>
+        //check() - 선언함수
+        function check(){
+            alert("자바스크립트의 일반함수");
+        }
+
+        //check() - 익명함수
+        var check = function(){
+            alert("자바스크립트의 일반함수");
+        }
+
+        //method() - 선언함수
+        function method(x){
+            if(x % 2 == 0){
+                alert("짝수");
+            }else{
+                alert("홀수");
+            }
+        }
+
+        //method() - 익명함수
+        var method = function(x){
+            if(x % 2 == 0){
+                alert("짝수");
+            }else{
+                alert("홀수");
+            }
+        }
+
+        //2번 - 익명함수 , 일반함수를 만들어서 확인
+        //익명함수
+        var point = function(name, a, b, c){
+            var sum = a + b + c;
+            var avg = sum / 3.0;
+
+            return name + "님의 평균은 : " + avg
+        }
+        
+        console.log(point("홍길동", 88, 90, 90)); //결과 : 홍길동님의 평균은 89.33333
+
+        // function point(name, a, b, c){
+        //     console.log(name,"님의 평균은 : ", (a+b+c)/3);
+        // }
+
+
+    </script>
+</body>
+</html>

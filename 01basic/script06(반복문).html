@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        for(var i = 0; i <= 10; i++){
+            console.log(i);
+        }
+
+        //1~10까지 저장된 배열
+        // var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        // var arr = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        
+        //배열의 값 추가
+        var arr = new Array();
+        for(var i = 1; i <= 10; i++){
+            arr.push(i); //끝에 추가
+        }
+        console.log(arr);
+
+        //순서대로 출력
+        for(var i = 0; i < arr.length; i++){
+            console.log(arr[i]);
+        }
+
+        //브라우저 화면으로 구구단 2~9단까지 출력
+        for(var dan = 2; dan <=9; dan++){
+            document.write("-------- ", dan, "단 -------- <br>");
+            for(var hang = 1; hang <= 9; hang++){
+                document.write(dan, " X ", hang, " = ", dan*hang, "<br>");
+            }
+        }
+
+    </script>
+    
+</body>
+</html>

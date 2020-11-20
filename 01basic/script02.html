@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        //var변수는 동일한 변수 중복을 선언할 수 있습니다
+        //실제로 변수 선언이 일어날때마다 새로운 변수가 만들어지는 형태로 동작합니다
+
+        var num1 = "10"; //문자
+        var num2 = "10"; //문자
+        var num3 = 10; //숫자
+        var num4 = 40;
+
+
+        num1 = "20";
+        num2 = "20";
+        num3 = "30";
+        
+
+        console.log(num1)
+        console.log(num2)
+        console.log(num3)
+
+        console.log(num1 + num2) //2020
+        console.log(40 + num1) //4020
+
+        var result = num1 + num2 + num3 + 100; //숫자 + 문자 = 문자 -- 문자가 가장 강한타입
+        console.log(result); //202030100
+
+        console.log("-------------------------------------");
+
+        // let(ES6문법에 추가된 변수)
+
+        // let a = 1;
+        // let a = 100; //동일변수명 사용 X --- 에러발생
+
+        console.log("-------------------------------------");
+        //number, string, boolean, undifined, null
+        
+        //number
+        var i1 = 10;
+        var i2 = 20;
+        var i3 = i1 + i2;
+        console.log(i3);
+
+        //string
+        var s1 = "나는 "; //큰따옴표("")가능
+        var s2 = '너에게 '; //작은따옴표('') 가능
+        var s3 = "'안녕!' 이라고 말했다"; //혼합가능
+        console.log(s1 + s2 + s3);
+
+        //boolean
+        var boolean1 = true;
+        var boolean2 = false;
+        console.log(boolean1);
+
+        //nudefined - 데이터 변수는 선언했지만, 초기화 하지 않은 경우에 자동으로 저장
+        var un;
+        console.log(un);
+
+        //null - 값은 저장했으나, 그값이 존재하지 않을 때 나타납니다.
+        var tag = document.querySelector("li");
+        console.log(tag);
+
+        //typeof -- 변수의 타입확인 (java의 instance of와 동일기능)
+        console.log(typeof i1);
+        console.log(typeof s1);
+        console.log(typeof boolean1);
+        console.log(typeof un);
+        console.log(typeof tag);
+
+
+        
+
+    </script>
+    
+</body>
+</html>

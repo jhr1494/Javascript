@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        // 선언적함수 vs 익명함수 -- 자바스크립트에서의 함수는 반환타입이 없습니다 !
+
+        /* 
+        호이스팅(당겨호출하기) - 선언적함수에서만 사용가능
+        원래는 위아래 순차적으로 진행되기 때문에 호출구문은 함수 아래에 있어야하지만 
+        선언적함수에 한해서 호이스팅(당겨호출하기)이 가능하여 함수위에 호출구문을 사용할 수 있다
+        */
+
+        // func1();
+        // func2();
+
+        function func1(){
+            console.log("func1실행")
+        }
+
+        function func2(){
+            console.log("func2실행")
+
+        }
+
+        func1(); // 정석방식
+        
+        //함수 자체를 변수에 저장할 수 있습니다
+        
+        //()를 넣으면 호출한 실행결과물(=return 받은 결과물)을 변수에 저장하는 것으로 
+        //func1에는 결과값이 없으므로 nudefined로 표기됨.
+        var a = func1(); //함수의 실행결과를 받는 문법
+        console.log(a); //nudefined
+    
+        var a = func1; //함수를 변수에 저장하는 문법
+        console.log(a);
+        a();
+
+
+        //익명함수 - 변수에 함수를 저장해서, 마치 함수처럼 쓰도록 만들어 줍니다 (호이스팅이 안된니다!)
+        var b = function() {
+            console.log("func3 실행");
+        }
+
+        //익명함수의 호출
+        b();
+
+
+        
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        //함수의 종료 - return;, return false;
+
+        // 매개변수와 return
+        function func1(x) {
+            var sum = 0;
+            for(var i = 1; i <= x; i++){
+                sum += i;
+            }
+            return sum; //결과반환
+        }
+
+        console.log( func1(10) ); // 55
+
+        function func2(x, y){
+            return x + y;
+        }
+
+        var compute = function(x, y, z){
+            return x + y + z;
+        }
+
+        console.log( func2(1, 2) ); //3
+        console.log( func2("안녕", 1004) ); //안녕1004
+        console.log( func2("hello", "world") ); //helloworld
+        console.log( func2() ); //NaN(숫자형의 undefined) -- 매개변수를 꼭 지키지 않아도 되지만, 개수에 맞춰서 전달하는 편이 좋습니다
+
+        console.log(compute); //함수 자체를 출력
+        console.log(compute(1, 2, 3)); //함수 결과 값 출력
+
+
+    </script>
+    
+</body>
+</html>
