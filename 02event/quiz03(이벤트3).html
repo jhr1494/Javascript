@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2 id="text" >단어를 선택하세요</h2>
+
+    <p>
+    <script>
+        window.onload = function() {
+            var sel = document.getElementById("sel");
+            var text = document.getElementById("text");
+
+            sel.onchange = function(){
+                var str = sel.value;
+
+                switch (str) {
+                    case "영어":
+                        text.innerHTML = "영어 입니다";
+                        break;
+                    case "한국어":
+                        text.innerHTML = "한국어 입니다";
+                        break;
+                    case "중국어":
+                        text.innerHTML = "중국어 입니다";
+                        break;
+                    default :
+                        text.innerHTML = "단어를 선택하세요";
+                        break;
+                
+                };
+            }
+
+        }
+    </script>
+    </p>
+
+    <p>
+        (select에서 value속성은 선택된 값을 의미합니다)
+    </p>
+
+    <select name="text" id="sel">
+        <option value="-">선택</option>
+        <option value="영어">hello</option>
+        <option value="한국어">안녕</option>
+        <option value="중국어">니하오</option>
+    </select>
+
+    
+</body>
+</html>

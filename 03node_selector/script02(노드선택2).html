@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        querySelector() - 단일선택 (css문법)
+        querySelectorAll() - 복수선택 (css문법)
+    -->
+
+    <script>
+        window.onload = function(){
+        
+            //querySelector확인 
+            // var b2 = document.querySelector("#btn1"); //#이 꼭 들어가야해 !
+            // console.log(b2);
+            
+            var b1 = document.getElementById("btn1");
+            b1.onclick = function(){
+                
+                //css문법으로 엘리먼트를 선택하는데, 단일 선택자 이기 때문에 첮번째 하나의 엘리먼트만 얻습니다.
+                var list = document.querySelector(".box1 li");
+                console.log(list);
+                list.innerHTML = "곧 버스올 시간이라구요?";
+                
+
+
+            }
+        }
+    </script>
+
+    <button type="button" id="btn1">querySelector확인</button>
+    <div>
+        <ul class="box1">
+            <li>안녕</li>
+            <li>헬로</li>
+            <li>니하오</li>
+        </ul>
+    </div>
+    
+</body>
+</html>

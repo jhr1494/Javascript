@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function func1(){
+            alert("1번 함수")
+        }
+        function func2(){
+            alert("2번 함수")
+        }
+
+
+        //즉시 실행 함수 - 일반적으로 페이지마지막애, 순서대로 함수를 실행하기 위해 사용됨.
+
+        //방법1. function() 함수에 다시 소가로()를 묶는 방법 
+        (function() {
+            console.log("즉시 실행함수");
+        }) () ;
+
+        //방법2. 호출 방법
+        (function() {
+            console.log("즉시 실행함수");
+            // 1번 다음 2번 함수 실행 하는 방법
+            func1();
+            func2();
+
+        }) () ;
+
+
+        //방법3. 매개변수를 만드는 방법도 잇음.
+        (function(x,y,z) {
+            console.log("즉시 실행함수");
+            // 1번 다음 2번 함수 실행 하는 방법
+            console.log(x+y+z)
+            func1();
+            func2();
+        }) (1,2,3) ;
+
+    </script>
+    
+</body>
+</html>

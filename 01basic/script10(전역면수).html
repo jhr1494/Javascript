@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        //var변수의 유효범위는 function까지 입니다.
+        //함수 안에 선언된 지역변수, 그 밖에 변수는 전역변수로 간주됩니다.
+
+        var num1 = 100;
+        if(true){
+            var num1 = 200; //전역변수
+        }
+
+        console.log(num1); //200 - 블럭안에서는 전역변수, 지역변수 개념이 없어서 전역변수로 선언
+
+
+        var num2 = 50;
+        function add(){
+            var num2 = 500;
+        }
+        add();
+        console.log(num2); //50 - 함수안에서 선언된 변수는 지역변수로 선언
+
+        //let은 자바스크립트의 var변수의 문제점을 보완하기 위해 나온 es6문법
+        //블록안에 선언된 변수를 지역변수로 판별됩니다.
+
+        let num3 = 100;
+        if(true){
+            let num3 = 200; //100 - 지역변수로 판별
+        }
+        console.log(num3);
+
+        let num4 = 100;
+        function add2(){
+            let num4 = 200;
+        }
+        add2();
+        console.log(num4);
+
+    </script>
+</body>
+</html>

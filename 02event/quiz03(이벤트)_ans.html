@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h3 id="title">단어를 선택하세요</h3>
+
+    <p>
+        (select에서 value속성은 선택된 값을 의미합니다)
+    </p>
+
+    <select id="selector">
+        <option>선택</option>
+        <option>hello</option>
+        <option>안녕</option>
+        <option>니하오</option>
+    </select>
+    
+    <script>
+        var title = document.getElementById("title")
+        var selector = document.getElementById("selector");
+        selector.onchange = function(){
+            var a = selector.value;
+            if(a === "hello"){
+                title.innerHTML = "영어입니다";
+
+            }else if(a === "안녕"){
+                title.innerHTML = "한국어입니다";
+
+            }else if(a === "니하오"){
+                title.innerHTML = "중국어입니다";
+
+            }else{
+                title.innerHTML = "단어를 선택하세요";
+
+            }
+
+        }
+    </script>
+
+
+
+
+    <hr/>
+    <hr/>
+
+    <h3 id="title2">단어를 선택하세요</h3>
+
+    <p>
+        (select에서 value속성은 선택된 값을 의미합니다)
+    </p>
+
+    <select id="selector2">
+        <option value="선택">선택</option>
+        <option value="영어">hello</option>
+        <option value="한국어">안녕</option>
+        <option value="중국어">니하오</option>
+    </select>
+
+    <script>
+        var selector = document.getElementById("selector2");
+
+        selector.onchange = function(){
+            var title = document.getElementById("title2");
+            
+            if(selector.value !== "선택"){
+                title.innerHTML = selector.value + " 입니다";
+
+            }else{
+                title.innerHTML = "단어를 선택하세요";
+            }
+        }
+
+    </script>
+
+
+</body>
+</html>

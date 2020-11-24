@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- 버튼 2개를 만들고 각각 confirm과 location.href를 이용해서 기능을 구현 -->
+    <script>
+        window.onload = function(){ //로드이벤트 - 윈도우 로드 이후에 실행되는 이벤트
+            var naver = document.getElementById("naver");
+            var google = document.getElementById("google");
+
+            //이벤트리스너 기법
+            naver.addEventListener("click",function() {
+                var bool = confirm ("네이버로 이동하시겠습니까 ?"); //true and false
+                if(bool){
+                    location.href = "https://www.naver.com";
+                }
+            });
+
+            //이벤트 익명함수 기법
+            google.onclick = function(){
+                var bool = confirm ("구글로 이동하시겠습니까 ?"); 
+                if(bool){
+                    location.href = "https://www.google.com";
+                }
+            }
+
+        }
+
+
+    </script>
+
+
+    <button type="button" id="naver">네이버로이동</button>
+    <button type="button" id="google">구글로이동</button>
+
+    
+</body>
+</html>

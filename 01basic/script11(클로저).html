@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //var변수는 함수 안에서 한번 지정되면 직접 변경, 사용할 수 없다.
+        // function func1(){
+        //     var a = "함수 안에서 선언된 지역변수";
+        // }//a의 지역변수는 여기서 해재된다.
+        // console.log(a);
+
+
+        function func1(){
+            var a = "함수 안에서 선언된 지역변수";
+
+            // var result = function(){
+            //     return a; //func1의 a변수
+            // }
+            // return result;//함수자체를 반환
+                
+            return function(){
+                return a;
+            }
+        }
+
+        var b = func1();
+        console.log( b ); //함수 자체를 반환 받는다
+        console.log(b()); //함수 안에 있는 a의 자원이 해제되지 않는다.
+
+        //클로저 - func1안에 내부함수가 func1의 지역변수를 접근할 수 있는 키를 가지고 있다.
+        //클로저 상황 - 내부함수가 외부함수에 지역변수값을 바꾸는 상황
+
+        //클로저를 이용해서 function안에 getter, setter함수로 사용이 가능합니다
+
+        function test1(){
+            var a = "private변수";
+            console.log("a값의 확인(전) : ", a);
+
+
+            return function(name){
+                a = name;
+                console.log("a값의 확인(후) : ", a);
+            }
+        }
+
+        var setter = test1();
+        setter("바뀐이름!");
+
+
+    </script>
+    
+</body>
+</html>

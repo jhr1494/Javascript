@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        // var arrow = function(a, b){
+        //     console.log("익명함수");
+        // }
+
+        var arrow = (a, b) => {
+            console.log("화살표함수");
+            console.log(a, b);
+        }
+
+        arrow(10, 5);
+
+        // return만 존재한다면 중괄호 생략가능
+        // var arrow1 = function(){
+        //     return "익명함수 반환"
+        // }
+
+        var arrow1 = () => { "익명함수 반환"
+            console.log(arrow1());
+        }
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 인라인이벤트 - this, innerHTML, 태그의 모든속성이 수정가능 ! -->
+
+    <!-- 태그에 직접 이벤트를 붙이는 형태가 인라인이벤트 이고, 이벤트 안에는 순수한 JS코드가 작성됩니다 -->
+    <!-- javascript: 은 생략 가능합니다 -->
+    <button type="button" onclick="javascript:check();
+        function check(){
+            alert('헐!');  
+        }
+    ">인라인이벤트</button>
+
+    <button type="button" onclick="javascript:alert('인라인이벤트!')">인라인이벤트2</button>
+    
+    <!-- 어떤 버튼을 클릭했는지 확인할 때, 사용가능한 키워드가 this입니다 -->
+    <button type="button" onclick="check_c()">인라인이벤트3??</button>
+    
+    <hr/>
+    <!-- 여러 태그에 동일 인라인 이벤트가 있는 경우 -->
+    <button type="button" onclick="check2(this)" id="1">a.텍스트</button>
+    <button type="button" onclick="check2(this)" id="2">b.텍스트</button>
+    <button type="button" onclick="check2(this)" id="3">c.텍스트</button>
+    <button type="button" onclick="check2(this)" id="4">d.텍스트</button>
+    <button type="button" onclick="check2(this)" id="5">e.텍스트</button>
+    <!-- this가 나자신 전체를 가르킴 -> 태그엘리먼트 -->
+
+    <script>
+        function check_c(){
+        alert('헐2!');   
+        }
+
+        function check2(a){
+            // console.log(a,"실행됨");
+            // this키워드는 실행문맥의 자신을 가르키며 .을 찍어서 태그의 속성들에 접근이 가능합니다
+            
+            // console.log(a.type); // type 값
+            // console.log(a.onclick); // onclick 값
+            // console.log(a.id); // id값
+            
+            //innerHTML 키워드는 선택된 태그의 text요소를 가르킵니다
+            // console.log(a.innerHTML); 
+            // a.innerHTML = "hello world"; //버튼의 텍스트영역을 변경
+            
+            a.innerHTML = a.id;
+        }
+
+    </script>
+</body>
+</html>

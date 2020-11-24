@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- id속성을 적절하게 이용 -->
+    <!-- 1. checkbox 버튼을 클릭했을 때 '1번조항에 동의했습니다' 문구를 띄우고 value값을 확인 (인라인이벤트) -->
+    <input type="checkbox" value="1" onclick="check(this)">조항 1
+    <input type="checkbox" value="2"  onclick="check(this)">조항 2
+    <input type="checkbox" value="3"  onclick="check(this)">조항 3
+    <input type="checkbox" value="4"  onclick="check(this)">조항 4
+  
+
+    <hr/>
+    <!-- 2. 기억하기 버튼을 클릭했을 때 input태그의 공백여부 체크박스 여부를 확인 -->
+    ID : <input type="text" id="id">
+    기억하기 : <input type="checkbox" id="rem" value="false" onclick=check2(this)><br/>
+    <input type="submit" value="확인" onclick="submit()">
+
+    <script>
+        //1. 조항
+        function check(id){
+            alert(id.value + "번 조항을 확인했습니다.");
+        };
+
+
+        //체크박스 값(기억하기)
+        function check2(rem){
+            rem.value
+        };
+
+
+        function submit(id){
+            var id = document.getElementById("id");
+            var check = document.getElementById("rem");
+
+            var idCheck = id.value.replace(/(\s*)/g,"");
+            
+            //아이디 공백체크
+            if(id.value != idCheck){
+                alert("공백이 존재합니다!");
+                return;
+            };
+
+            console.log("ID값 : ", id.value);
+            console.log("check값 : ", check.checked);
+
+
+            
+        };
+
+
+
+
+    </script>
+
+
+
+</body>
+</html>
