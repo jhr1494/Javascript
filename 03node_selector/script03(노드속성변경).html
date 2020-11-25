@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="content1">
+        <select class="select1">
+            <option value="1.jpg">봄</option>
+            <option value="2.jpg">여름</option>
+            <option value="3.jpg">가을</option>
+            <option value="4.jpg">겨울</option>
+        </select>
+        <button type="button" class="btn1">이미지 바꾸지</button><br/>
+
+        <img src="1.jpg" width="300px" class="img1">
+    </div>
+
+    <script>
+        var content1 = document.getElementById("content1");
+        
+        var select1 = content1.querySelector(".select1"); //select태그
+        var btn1 = content1.querySelector(".btn1"); //button태그
+        var img1 = content1.querySelector(".img1"); //img태그
+
+        btn1.onclick = function(){
+            img1.src = select1.value; //select의 선택값을 -> src에 대입
+        }
+    </script>
+
+
+    <div>
+        <img src="1.jpg" width="300px" class="img2"><br/>
+        <select class="select2">
+            <option value="1.jpg">봄</option>
+            <option value="2.jpg">여름</option>
+            <option value="3.jpg">가을</option>
+            <option value="4.jpg">겨울</option>
+        </select>
+    </div>
+
+    <script>
+        var select2 = document.querySelector(".select2");
+        var img2 = document.querySelector(".img2");
+
+        select2.onchange = function(){
+            img2.src = select2.value;
+        }
+    </script>
+
+    
+</body>
+</html>

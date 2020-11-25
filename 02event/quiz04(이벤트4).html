@@ -37,6 +37,37 @@
     </script>
 
 
+    <hr/>
+    <!-- ans -->
+    <h3>자바스크립트 카운트</h3>
+
+    <input type="text" id="result" value="0">
+    <button type="button" onclick="calc(this)">+</button>
+    <button type="button" onclick="calc(this)">-</button>
+
+    <script>
+        function calc(oper){
+            var result = document.getElementById("result");
+
+            if(oper.innerHTML === "+"){
+                result.value++;
+
+            } else { //-인 경우
+                if(result.value <= 0){
+                    alert("0보다 작을수 없습니다");
+                    return; //함수의 종료
+                }
+                result.value--;
+
+            }
+
+        }
+
+    </script>
+
+
+
+
 
 </body>
 

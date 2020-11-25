@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>innerHTML형식으로 만들어보기</h2>
+
+    <div id="content" >
+
+    </div>
+
+    <script>
+        var content = document.querySelector("#content");
+        content.innerHTML = "<p>요소넣기!</p>"; //문자열의 형식으로 추가
+    </script>
+
+    <!-- 응용 -->
+    <div id="inner1"> </div>
+    <div id="inner2"> 
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div id="inner3"></div>
+    
+    <button type="button" id="btn1">버튼1</button>
+    <button type="button" id="btn2">버튼2</button>
+    <button type="button" id="btn3">버튼3</button>
+    
+    <script>
+        var btn1 = document.getElementById("btn1");
+        btn1.onclick = function(){
+            var inner1 = document.getElementById("inner1");
+            inner1.innerHTML = "<p><span>버튼클릭시 문자방식으로 엘리먼트를 추가</span></p>"
+        }
+
+        //2
+        var btn2 = document.getElementById("btn2");
+        btn2.onclick = function(){
+            var inner2 = document.querySelectorAll("#inner2 > ul > li");
+            for(var i = 0; i < inner2.length; i++){
+            inner2[i].innerHTML = "<a>이렇게 추가!</a>";
+            }
+        }
+
+        //3
+        var btn3 = document.getElementById("btn3");
+        btn3.onclick = function(){
+            var inner3 = document.getElementById("inner3");
+            var str = ""; //문자열을 누적할 변수
+
+            for(var i = 1; i <= 10; i++){
+                str += "<input type='checkbox' name='add'>"; //누적
+            }
+            inner3.innerHTML = str; //적용
+        }
+
+    </script>
+
+    
+</body>
+</html>

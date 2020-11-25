@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .title {
+        text-align: center;
+    }
+
+    .container {
+        display: block;
+        padding: 10px 10px;
+        width: 500px;
+        margin: 0 auto;
+        border: 1px solid black;
+    }
+
+    .container .row {
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .imgBox, .textBox {
+        display: block;
+        float: left;
+        width: 49%;
+        height: 400px;
+        padding: 0;
+        border: 1px solid black;
+        overflow: hidden;
+    }
+
+    .textBox{
+        margin-left: 5px;
+    }
+
+    .imgBox img{
+        width: 600px;
+    }
+
+</style>
+
+<body>
+
+
+
+    <section class="title">
+        <h3>Style 속성활용하기</h3>
+        <p>
+            <button type="button" id="black">어둡게</button>
+            <button type="button" id="white">밝게</button>
+        </p>
+        <hr />
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <!-- 숨긴상자 -->
+            <div class="imgBox">
+                <img src="3.jpg" >
+            </div>
+
+            <div class="textBox">
+                <p>
+                    자바스크립트(영어: JavaScript)는 객체 기반의 스크립트 프로그래밍 언어이다.
+                    이 언어는 웹 브라우저 내에서 주로 사용하며,
+                    다른 응용 프로그램의 내장 객체에도 접근할 수 있는 기능을 가지고 있다.
+                    또한 Node.js와 같은 런타임 환경과 같이 서버 프로그래밍에도 사용되고 있다.
+                </p>
+                <a href="#">위키백과</a>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        var btnB = document.getElementById("black");
+        var btnW = document.getElementById("white");
+        var body = document.querySelector("body");
+
+        btnB.addEventListener("click", function () {
+            body.style.backgroundColor = "black";
+            body.style.color = "white";
+        });
+
+        btnW.addEventListener("click", function () {
+            body.style.backgroundColor = "white";
+            body.style.color = "black";
+        });
+
+
+    </script>
+
+</body>
+
+</html>

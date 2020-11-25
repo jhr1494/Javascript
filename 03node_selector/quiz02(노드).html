@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!--
+    아이디나 비밀번호가 변경될때, 예제처럼 처리되도록 구현하세요 
+    change, keyup 이벤트 활용
+    -->
+    
+    <div>
+        <form>
+            아이디 : <input type="text" name="id"><br/> <!--커서가 가면 보더생상변경 --- 가능 : 초록/ 불가능 : 빨강 -->
+            <span class="idMsg"></span><br/> <!-- 4글자 이상되면 메세지 사라짐 -->
+            비밀번호 : <input type="password" name="pw"><br/> <!--커서가 가면 보더생상변경 --- 가능 : 초록/ 불가능 : 빨강 -->
+            <span class="pwMsg"></span> <!-- 4글자 이상되면 메세지 사라짐 -->
+        </form>
+    </div>
+
+    <script>
+        var id = document.querySelector("input[name = 'id']");
+        var pw = document.querySelector("input[name = 'pw']");
+
+        id.onckeyup = function(){
+            var idMsg = document.querySelector(".idMsg");
+
+            if(id.value.length < 4){
+                id.style.borderColor = "red";
+                idMsg.innerHTML = "아이디는 4글자 이상입니다.";
+            }else {
+                id.style.borderColor = "green";
+                idMsg.innerHTML = "";
+            }
+        }
+
+
+
+    </script>
+
+
+    
+
+</body>
+</html>

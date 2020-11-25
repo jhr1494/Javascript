@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {
+        border-spacing: 0;
+        /* 윤곽의 간격 */
+        border-collapse: collapse;
+        /* 겹치는 부분의 처리 */
+    }
+
+    thead th {
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+
+    <table>
+        <thead>
+            <!-- tr을 대신한다 -->
+            <th>교시</th> <!-- td을 대신한다 -->
+            <th>훈련과목</th>
+            <th>담당자</th>
+            <th>훈련내용</th>
+        </thead>
+        <tbody id="tab">
+            <tr>
+                <td><input type="text" size="3"></td>
+                <td><input type="text"></td>
+                <td><input type="text" size="5"></td>
+                <td><input type="text"></td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="button" id="btn1">5개추가</button>
+    <button type="button" id="btn2">1개추가</button>
+
+    <script>
+        window.onload = function () {
+            var btn1 = document.getElementById("btn1"); //5개
+            var btn2 = document.getElementById("btn2"); //1개
+
+            var tbody = document.createElement("tbody");
+
+            btn2.addEventListener("click", createList);
+            
+            function createList(){
+                var tr = document.createElement("tr");
+
+                // var input = document.createElement("input");
+                // input.type="text";
+                // input.size = 3;
+                // var td = document.createElement("td");
+                // td.appendChild(input);
+                // tr.appendChild(td);
+
+                for(var i = 1; i <= 4; i++){
+                    var str = "<input type='text'>";
+
+                    if(i === 1){
+                        str = "<input type='text' size='3'>";
+                    }else if (i === 3){
+                        str = "<input type='text' size='5'>";
+                    }
+                    var td = document.createElement("td");
+                    td.innerHTML = str;
+                    tr.appendChild(td);
+
+                }
+                document.getElementById("tab").appendChild(tr);
+
+                };
+
+            btn1.addEventListener("click", createList5);
+
+            function createList5(){
+                for(var i = 1; i <=5; i ++){
+                createList();
+                }
+            }
+
+
+
+
+           
+
+
+        };
+    </script>
+
+
+</body>
+
+</html>

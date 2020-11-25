@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <form id="form">
+        <img src="1.jpg" width="300px" class="img" style="border: 5px solid black;"><br/>
+        <select class="select">
+            <option value="1.jpg">봄</option>
+            <option value="2.jpg">여름</option>
+            <option value="3.jpg">가을</option>
+            <option value="4.jpg">겨울</option>
+        </select>
+
+        <span>변경할 색상</span>
+        <input type="color" class="input">
+    </form>
+
+    <script>
+        var form = document.getElementById("form");
+        
+        var img = form.querySelector(".img");
+        var select = form.querySelector(".select");
+        var input = form.querySelector(".input");
+
+        select.onchange = function(){
+            img.src = select.value;
+        }
+
+        input.onchange = function(){
+            // img.style.border = "5px solid " + input.value;
+            img.style.borderColor = input.value; //border-color -> borderColor로 표기(카멜표기법)
+        }
+
+    </script>
+
+
+</body>
+</html>
