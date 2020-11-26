@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style type="text/css">
+        .center{
+            text-align: center;
+        }
+
+        .content{
+            width: 50%;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 1px solid #7777;
+            padding: 5px;
+        }
+        .content .left,
+        .content .right{
+            float: left;
+            width: 50%;
+            padding: 5px;
+            box-sizing: border-box; /* 넒이에 패딩과 크기 포함 */
+        }
+
+        .content .right .inner{
+            overflow: auto;
+
+        }
+
+        .content .inner{
+            border: 1px solid #7777;
+            height: 300px;
+        }
+
+        img{
+            width: 100%;
+            height: 100%;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+
+    <!-- body 태그의 backgroundcolor -->
+    <!-- 색상반전시에 글자색상 변경 -->
+
+    <header>
+        <div class="center">
+            <h2>style 속성 활용하기</h2>
+            <button type="button" id="dark">어둡게</button>
+            <button type="button" id="bright">밝게</button>
+        </div>
+    </header>
+
+    <hr/>
+    <section>
+        <div class="content">
+            <div class="left">
+                <div class="inner">
+                    <img src="1.jpg" alt="test">
+                </div>
+            </div>
+            <div class="right">
+                <div class="inner">
+                    <p> 자바스크립트(영어: JavaScript)는 객체 기반의 스크립트 프로그래밍 언어이다.
+                        이 언어는 웹 브라우저 내에서 주로 사용하며,
+                        다른 응용 프로그램의 내장 객체에도 접근할 수 있는 기능을 가지고 있다.
+                        또한 Node.js와 같은 런타임 환경과 같이 서버 프로그래밍에도 사용되고 있다.
+                    </p>
+                    <a href="#">위키백과</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        var dark = document.getElementById("dark");
+        dark.onclick = function(){
+            // var all = document.querySelector("body");
+            // all.style.backgroundColor = "black";
+            // all.style.color = "white";
+
+            document.body.style.backgroundColor = "black"; //body는 document의 하위자식으로 .으로 접근이 가능합니다
+            var tag = document.querySelectorAll("h2, p, a") ;
+            tag[0].style.color = "white";
+            tag[1].style.color = "white";
+            tag[2].style.color = "white";
+        };
+
+        var bright = document.getElementById("bright");
+        bright.onclick = function(){
+
+            document.body.style.backgroundColor = "white"; //body는 document의 하위자식으로 .으로 접근이 가능합니다
+            var tag = document.querySelectorAll("h2, p, a") ;
+            tag[0].style.color = "black";
+            tag[1].style.color = "black";
+            tag[2].style.color = "black";
+
+        }
+    </script>
+
+
+</body>
+</html>

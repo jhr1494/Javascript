@@ -46,10 +46,7 @@
             var btn1 = document.getElementById("btn1"); //5개
             var btn2 = document.getElementById("btn2"); //1개
 
-            var tbody = document.createElement("tbody");
-
             btn2.addEventListener("click", createList);
-            
             function createList(){
                 var tr = document.createElement("tr");
 
@@ -73,22 +70,17 @@
                     tr.appendChild(td);
 
                 }
-                document.getElementById("tab").appendChild(tr);
+                document.getElementById("tab").appendChild(tr); //조립된 tbody아래에 행으로 추가한다
 
                 };
 
             btn1.addEventListener("click", createList5);
-
             function createList5(){
                 for(var i = 1; i <=5; i ++){
                 createList();
                 }
             }
 
-
-
-
-           
 
 
         };

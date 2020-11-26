@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style type="text/css">
+        .center{
+            text-align: center;
+        }
+
+        .content{
+            width: 50%;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 1px solid #7777;
+            padding: 5px;
+        }
+        .content .left,
+        .content .right{
+            float: left;
+            width: 50%;
+            padding: 5px;
+            box-sizing: border-box; /* 넒이에 패딩과 크기 포함 */
+        }
+
+        .content .right .inner{
+            overflow: auto;
+        }
+
+        .content .inner{
+            border: 1px solid #7777;
+            height: 300px;
+        }
+
+        img{
+            width: 100%;
+            height: 100%;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <!-- body 태그의 backgroundcolor -->
+    <!-- 색상반전시에 글자색상 변경 -->
+
+    <header>
+        <div class="center">
+            <h2>토글형태 활용하기</h2>
+            <button type="button" id="btn1" class="dark">어둡게보기</button>
+            <button type="button" id="btn2" class="name">이름보기</button>
+            <button type="button" id="btn3" class="note">메모장모드</button>
+        </div>
+    </header>
+
+    <hr/>
+    <section>
+        <div class="content">
+            <div class="left">
+                <div class="inner">
+                    <img src="../03node_selector/1.jpg" alt="test">
+                </div>
+            </div>
+            <div class="right">
+                <div class="inner">
+                    <p> 자바스크립트(영어: JavaScript)는 객체 기반의 스크립트 프로그래밍 언어이다.
+                        이 언어는 웹 브라우저 내에서 주로 사용하며,
+                        다른 응용 프로그램의 내장 객체에도 접근할 수 있는 기능을 가지고 있다.
+                        또한 Node.js와 같은 런타임 환경과 같이 서버 프로그래밍에도 사용되고 있다.
+                    </p>
+                    <a href="#">위키백과</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        var btn1 = document.querySelector("#btn1"); //어둡게보기/밝게보기 - 전체
+        var btn2 = document.querySelector("#btn2"); //이름보기/내용보기 - 우박스
+        var btn3 = document.querySelector("#btn3"); //사진모드/메모장모드 - 좌박스
+
+        //배경/글씨 색상변경
+        btn1.onclick = function(){
+            var tag = document.querySelectorAll("h2, p, a")
+
+            if(btn1.className === "dark"){ //어둡게
+                document.body.style.backgroundColor = "black";
+                btn1.className = "bright";
+                btn1.innerHTML = "밝게보기";
+                for(var i = 0; i < tag.length; i++){
+                    tag[i].style.color = "white";
+                };
+            } else { //밝게
+                document.body.style.backgroundColor = "white";
+                btn1.className = "dark";
+                btn1.innerHTML = "어둡게보기";
+                for(var i = 0; i < tag.length; i++){
+                    tag[i].style.color = "black";
+                };
+            };
+        }
+
+        //내용/이름보기 변경
+        //이름정보 p태그 
+        var p = document.createElement("p"); //이름정보 p태그
+        p.innerHTML = "<p> 홍길동 <br> 나이 : 20세 <br> 능력구분 <br> JAVA JSP Oracle Javascrip </p>";
+        console.log(document.querySelector(".right .inner"));
+        document.querySelector(".right .inner").appendChild(p);
+        p.style.display = "none";
+        
+        btn2.onclick = function(){
+            var content = document.querySelectorAll(".right .inner p, .right .inner a");
+
+            if(btn2.className === "name"){
+                p.style.display="block";
+                content[1].style.display = "none";
+                content[0].style.display = "none";
+                btn2.className = "cont";
+                btn2.innerHTML = "내용보기";
+            }else {
+                p.style.display = "none";
+                content[1].style.display = "block";
+                content[0].style.display = "block";
+                btn2.className = "name";
+                btn2.innerHTML = "이름보기";    
+            }
+
+        }
+        
+        //사진모드/메모장모드
+        var textarea = document.createElement("textarea");
+        var textButton = document.createElement("button");
+        textarea.style = "width : 96%; height : 50%; display : none";
+        textButton.style.display = "none";
+        textButton.innerHTML = "등록하기";
+        
+        document.querySelector(".left .inner").appendChild(textarea);
+        document.querySelector(".left .inner").appendChild(textButton);
+
+        btn3.onclick = function(){
+            var img = document.querySelector(".left .inner img");  
+            var note = document.querySelectorAll(".left .inner textarea, .left .inner button");
+            if(btn3.className === "note"){
+                img.style.display = "none";
+                note[0].style.display = "block";
+                note[1].style.display = "block";
+
+                btn3.className = "photo";
+                btn3.innerHTML = "사진모드";
+            }else {
+                img.style.display = "block";
+                note[0].style.display = "none";
+                note[1].style.display = "none";
+
+                btn3.className = "note";
+                btn3.innerHTML = "메모장모드";
+            }
+        }
+
+
+
+    </script>
+
+
+</body>
+</html>
