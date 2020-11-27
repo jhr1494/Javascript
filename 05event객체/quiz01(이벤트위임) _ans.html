@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+    <style>
+        ul li{
+            display: inline-block;
+        }
+        li {text-decoration: none;}
+    </style>
+<body>
+    <h2>이벤트 속성을 이용해서 다음을 만들어보세요. 다 만들었다면 위임방식으로 변경하세요</h2>
+    <ul class="imgList">
+        <li><img src="img/1.jpg" width="100"></li>
+        <li><img src="img/2.jpg" width="100"></li>
+        <li><img src="img/3.jpg" width="100"></li>
+        <li><img src="img/4.jpg" width="100"></li>
+    </ul>
+    결과 : 
+    <div class="result"><img src="img/1.jpg" width="300"></div>
+
+    <script>
+        //for문 방식
+        // var img = document.querySelector(".result img"); //결과img
+        // var imgList = document.querySelectorAll("ul li img"); //img들
+        // for(var i = 0; i < imgList.length; i++){
+        //     imgList[i].addEventListener("click", handleImg);
+        // }
+        // function handleImg(e){
+        //     img.src = e.target.src;
+        // }
+
+        //위임방식
+        var img = document.querySelector(".result img"); //결과img
+        var imgList = document.querySelector(".imgList"); //부모태그
+        imgList.onclick = function(e){
+            if(e.target.tagName !== 'IMG') return; //이미지 태그가 아니라면 종료
+            img.src = e.target.src;
+        }
+
+    </script>
+
+
+
+    
+</body>
+</html>

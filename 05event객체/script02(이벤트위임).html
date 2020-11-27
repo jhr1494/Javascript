@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="parent">
+        <li>홍길동</li>
+        <li>이순신</li>
+        <li>홍길자</li>
+        <li>김길자</li>
+        <li>고길동</li>
+    </ul>
+    <div class="result"></div>
+    
+    <script>
+        var result = document.querySelector(".result");
+        var parent = document.querySelector(".parent");
+        parent.onclick = function(){
+            //이벤트를 위임할 때 부모를 클릭해도 적용되는 문제가 있습니다.
+            // console.log(event.target); //현재 실행되는 이벤트 대상 -- 위임받는
+            console.log(event.currentTarget); //실제 이벤트가 걸려있는 부모 -- 위임하는
+            // console.log(event.target.tagName);
+            if(event.target.tagName !== 'LI') return; //ul일경우에는 동작을 하지 않음
+
+            result.innerHTML = event.target.innerHTML;
+        }
+    </script>
+
+</body>
+</html>

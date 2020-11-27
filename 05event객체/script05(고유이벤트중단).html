@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul, li {list-style: none;}
+        li {display: inline-block; border: 1px solid black; padding: 10px;}
+        a {text-decoration: none;}
+    </style>
+</head>
+<body>
+    
+    <h2>a태그, submit의 고유태그들의 이벤트 중단</h2>
+
+    <div>
+        <ul class="pageNation">
+            <li><a href="getList.board">1</a></li>
+            <li><a href="getList.board">2</a></li>
+            <li><a href="getList.board">3</a></li>
+            <li><a href="getList.board">4</a></li>
+            <li><a href="getList.board">5</a></li>
+        </ul>
+    </div>
+
+    <script>
+        var pageNation = document.querySelector(".pageNation");
+        pageNation.onclick = function(){
+            event.preventDefault(); //고유특성을 가진 태그의 이벤트를 제거하는 함수
+            if(event.target.tagName !== 'A') return; //A태그가 아니라면 중단
+
+            var num = event.target.innerHTML; //dom조작 코드 생성
+            console.log(num);
+        }
+
+    </script>
+</body>
+</html>

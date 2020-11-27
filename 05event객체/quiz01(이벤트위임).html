@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+    <style>
+        ul li{
+            display: inline-block;
+        }
+        li {text-decoration: none;}
+
+    </style>
+<body>
+    <h2>이벤트 속성을 이용해서 다음을 만들어보세요. 다 만들었다면 위임방식으로 변경하세요</h2>
+    <ul>
+        <li class="photo"><img src="img/1.jpg" width="100px"></li>
+        <li class="photo"><img src="img/2.jpg" width="100px"></li>
+        <li class="photo"><img src="img/3.jpg" width="100px"></li>
+        <li class="photo"><img src="img/4.jpg" width="100px"></li>
+    </ul>
+    결과 : 
+    <div class="result"><img src="img/1.jpg" width="300"></div>
+
+    <script>
+        var photo = document.querySelectorAll(".photo img");
+        var result = document.querySelector(".result img");
+        console.dir(result);
+
+        for(var i = 0; i < photo.length; i++){
+            photo[i].onclick = function(evant){
+                result.src = evant.target.src;
+                
+            }
+        }
+    </script>
+
+    <hr/>
+    <h3>위임방식</h3>
+
+    <ul class="parent">
+        <li><img src="img/1.jpg" width="100px"></li>
+        <li><img src="img/2.jpg" width="100px"></li>
+        <li><img src="img/3.jpg" width="100px"></li>
+        <li><img src="img/4.jpg" width="100px"></li>
+    </ul>
+    결과 : 
+    <div class="result2"><img src="img/1.jpg" width="300"></div>
+
+    <script>
+        var parent = document.querySelector(".parent");
+        var img = document.querySelector(".result2 img");
+
+        console.log(parent);
+        parent.onclick = function(){
+            if(event.target.tagName !== 'IMG') return;
+            img.src = event.target.src;
+        }
+    </script>
+
+    
+</body>
+</html>

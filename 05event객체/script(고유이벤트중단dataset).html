@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>엘리먼트의 dataset(필요한 데이터를 저장하는 곳)을 사용하는 방법</h2>
+    <ul class="nameList">
+        <!-- <li><a href="#" data-userInfo="이공간이 데이터를 저장">홍길동</a></li> -->
+        <li><a href="#" data-userInfo='{"id" : "1", "age" : "20", "name" : "홍길동"}'>홍길동</a></li>
+        <li><a href="#" data-userInfo='{"id" : "2", "age" : "30", "name" : "이순신"}'>이순신</a></li>
+        <li><a href="#" data-userInfo='{"id" : "3", "age" : "40", "name" : "홍길자"}'>홍길자</a></li>
+        <li><a href="#" data-userInfo='{"id" : "4", "age" : "10", "name" : "박찬호"}'>박찬호</a></li>
+    </ul>
+
+    <script>
+        var nameList = document.querySelector(".nameList");
+
+        nameList.onclick = function(){
+            event.preventDefault(); //a의 고유이벤트 중단
+            if(event.target.tagName !== 'A') return; //a태그가 아니라면 중단
+
+            // 엘리먼트에 data-이름 으로 저장한 속성은 js에서 dateset.이름 으로 얻어올 수 있습니다. 
+            // console.dir(event.target);
+            // console.log(event.target.dataset.userinfo);
+
+            var data = event.target.dataset.userinfo
+            var jsonData = JSON.parse(data);//제이슨 형식으로 변환
+
+            console.log(jsonData);
+            console.log("id : " + jsonData.id, "age : " + jsonData.age);
+
+        }
+    </script>
+</body>
+</html>

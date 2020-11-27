@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{border-spacing: 0; border-collapse: collapse; width: 100%; text-align: center;}
+        th, td{border: 1px solid black;}
+    </style>
+</head>
+<body>
+
+    <table>
+        <thead>
+            <th>번호</th>
+            <th>과정명</th>
+            <th>담당교수</th>
+            <th>관리</th>
+        </thead>
+        <tbody id="table">
+            <tr>
+                <td>1</td>
+                <td>강남응용자바</td>
+                <td>홍길동</td>
+                <td>
+                    <button type="button" class="btn testInfo">시험기본정보</button>
+                    <button type="button" class="btn testInput">시험출제</button>
+                    <button type="button" class="btn testResult">시험결과</button>
+                    <button type="button" class="btn scoreInfo">성적관리</button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>종로응용자바</td>
+                <td>홍길동</td>
+                <td>
+                    <button type="button" class="btn testInfo">시험기본정보</button>
+                    <button type="button" class="btn testInput">시험출제</button>
+                    <button type="button" class="btn testResult">시험결과</button>
+                    <button type="button" class="btn scoreInfo">성적관리</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        var table = document.getElementById("table");
+
+        table.onclick = function(){ //이벤트 위임
+
+            //1. 버튼이 아니면 실행을 종료
+            if(event.target.tagName !== 'BUTTON') return;
+
+            var classList = event.target.classList; //클래스 목록
+
+            if(classList.contains("testInfo")){
+                console.log(event.target);
+                console.log("시험기본정보...");
+            }else if(classList.contains("testInput")){
+                console.log(event.target);
+                console.log("시험출제...");
+            }else if(classList.contains("testResult")){
+                console.log(event.target);
+                console.log("시험결과...");
+            }else if(classList.contains("scoreInfo")){
+                console.log(event.target);
+                console.log("성적관리...");
+            }
+        }
+    </script>
+    
+</body>
+</html>

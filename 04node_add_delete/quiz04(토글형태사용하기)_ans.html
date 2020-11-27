@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style type="text/css">
+        .center{
+            text-align: center;
+        }
+
+        .content{
+            width: 50%;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 1px solid #7777;
+            padding: 5px;
+        }
+        .content .left,
+        .content .right{
+            float: left;
+            width: 50%;
+            padding: 5px;
+            box-sizing: border-box; /* 넒이에 패딩과 크기 포함 */
+        }
+
+        .content .right .inner{
+            overflow: auto;
+        }
+
+        .content .inner{
+            border: 1px solid #7777;
+            height: 300px;
+        }
+
+        img{
+            width: 100%;
+            height: 100%;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <!-- body 태그의 backgroundcolor -->
+    <!-- 색상반전시에 글자색상 변경 -->
+
+    <header>
+        <div class="center">
+            <h2>토글형태 활용하기</h2>
+            <button type="button" id="btn1" class="dark">어둡게</button>
+            <button type="button" id="btn2" class="name">이름보기</button>
+            <button type="button" id="btn3" class="write">메모장모드</button>
+        </div>
+    </header>
+
+    <hr/>
+    <section>
+        <div class="content">
+            <div class="left">
+                <div class="inner">
+                    <img src="../03node_selector/1.jpg" alt="test">
+                </div>
+            </div>
+            <div class="right">
+                <div class="inner">
+                    <p> 자바스크립트(영어: JavaScript)는 객체 기반의 스크립트 프로그래밍 언어이다.
+                        이 언어는 웹 브라우저 내에서 주로 사용하며,
+                        다른 응용 프로그램의 내장 객체에도 접근할 수 있는 기능을 가지고 있다.
+                        또한 Node.js와 같은 런타임 환경과 같이 서버 프로그래밍에도 사용되고 있다.
+                    </p>
+                    <a href="#">위키백과</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        //body, h2, p, a를 얻어서 가져옵니다
+        var all = document.querySelector("body");
+        var tag = document.querySelectorAll("h2, p, a");
+
+        var btn1 = document.getElementById("btn1");
+        btn1.onclick = function(){
+            
+            if(btn1.className === 'dark'){
+                all.style.backgroundColor = "black";
+                for(var i = 0; i < tag.length; i++){
+                    tag[i].style.color = "white";
+                }
+                btn1.innerHTML = "밝게"; //버튼의 내용을 변경한다
+                btn1.className = "white"; //버튼의 클래스 이름을 변경한다
+            } else { //밝게
+                all.style.backgroundColor = "white";
+                for(var i = 0; i < tag.length; i++){
+                    tag[i].style.color = "black";
+                }
+                btn1.innerHTML = "어둡게";
+                btn1.className = "dark";
+            };
+        }
+
+        //p태그 안에 내용을 바꾸고, a는 display처리 방식
+        var p = document.querySelector(".right > .inner > p");
+        var a = document.querySelector(".right > .inner > a");
+
+        var btn2 = document.getElementById("btn2");
+        btn2.onclick = function(){
+
+            if(btn2.className === 'name'){
+                p.innerHTML = "홍길자<br>20세<br>능력단위<br> Java, Oracle, JSP, CSS, Javascript";
+                a.style.display = "none";
+                btn2.innerHTML = "내용보기";
+                btn2.className = "cont";
+            } else {
+                p.innerHTML = "자바스크립트(영어: JavaScript)는 객체 기반의 스크립트 프로그래밍 언어이다. 이 언어는 웹 브라우저 내에서 주로 사용하며,다른 응용 프로그램의 내장 객체에도 접근할 수 있는 기능을 가지고 있다. 또한 Node.js와 같은 런타임 환경과 같이 서버 프로그래밍에도 사용되고 있다.";
+                a.style.display = "block";
+                btn2.innerHTML = "이름보기";
+                btn2.className = "name";
+            }
+        }
+        
+        
+        //사진모드/메모장모드
+        var inner = document.querySelector(".left > .inner");
+        var btn3 = document.getElementById("btn3");
+        btn3.onclick = function(){
+
+            //박스 안 요소들은 전부 삭제
+            for(var i = 0; i < inner.children.length; ){ //리스트가 가변적이기 때문에 i값의 증가가 일어나면 안된다.
+                inner.removeChild(inner.children[i]); //삭제
+            }
+
+            if(btn3.className === 'write'){
+                var textarea = document.createElement("textarea");
+                textarea.style.height = "100px";
+                textarea.style.width = "100%";
+                textarea.style.resize = "vertical";
+                textarea.style.boxSizing = "border-box";
+
+                var button = document.createElement("button");
+                button.innerHTML = "등록하기";
+                //박스안에 엘리먼트 추가
+                inner.appendChild(textarea);
+                inner.appendChild(button);
+
+                btn3.innerHTML = "사진모드";
+                btn3.className = "picture";
+            } else {
+                
+                var img = document.createElement("img");
+                img.src = "../03node_selector/1.jpg";
+                inner.appendChild(img);
+
+                btn3.innerHTML = "메모장모드";
+                btn3.className = "write";
+            }
+        }
+
+
+
+    </script>
+
+
+</body>
+</html>

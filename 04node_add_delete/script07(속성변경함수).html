@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 속성변경함수 : setAttribute(), getAttribute(), removeAttribute() -->
+
+    <h2>하나의 폼으로 전송요청을 변경해서 보내는 방법</h2>
+    <!-- document의 하위자식 : body, form -->
+    <form method="POST" name="forms">
+        <input type="hidden" name="num"><br/>
+        <input type="text" name="title"><br/>
+
+        <input type="button" value="수정" onclick="change(this)">
+        <input type="button" value="추가" onclick="change(this)">
+    </form>
+
+    <script>
+        // form의 접근방법
+        // form은 document의 하위 자식이기 때문에 
+        // form이 이름값을 가지고 있으면 바로 접근이 가능합니다
+        document.forms.action = "https://www.naver.com";
+        console.log(document.form);
+
+        function change(a){
+    
+            // a의 value값 접근방법
+            // console.log(a.value); //일반적으로 많이 사용하는 방식
+            // console.log(a.getAttribute("value")); //속성명이 value인 값을 얻습니다.
+            var handle = a.getAttribute("value");
+            if(handle === '수정'){
+                //form은 document의 자식이라서 document.폼이름 으로 접근이 가능합니다.
+                // document.forms.action = "https://www.naver.com";
+                document.forms.setAttribute("action", "https://www.naver.com");
+                document.forms.submit(); //submit함수
+            } else if (handle === '추가'){
+                document.forms.setAttribute("action", "https://www.google.com")
+                document.forms.submit(); //submit함수
+            }
+        }
+
+
+    </script>
+
+
+
+</body>
+</html>

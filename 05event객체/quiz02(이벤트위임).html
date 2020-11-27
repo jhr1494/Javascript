@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        table {
+        border-spacing: 0;
+        /* 윤곽의 간격 */
+        border-collapse: collapse;
+        /* 겹치는 부분의 처리 */
+    }
+
+    thead th, tr, td {
+        border: 1px solid black;
+    }
+
+    </style>
+<body>
+    <h2>이벤트 속성을 이용해서 다음을 만들어보세요. 다 만들었다면 위임방식으로 변경하세요</h2>
+    <button class="b">추가</button>
+    <table>
+        <thead>
+            <th>번호</th>
+            <th>제목</th>
+            <th>내용</th>
+            <th>삭제</th>
+        </thead>
+        <tbody class="tbody">
+            <tr>
+                <td>1</td>
+                <td>첫글</td>
+                <td>hi</td>
+                <td><button type="button">삭제</button></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>첫글</td>
+                <td>hi</td>
+                <td><button type="button">삭제</button></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>첫글</td>
+                <td>hi</td>
+                <td><button type="button">삭제</button></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>첫글</td>
+                <td>hi</td>
+                <td><button type="button">삭제</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- <script>
+        //테이블내용
+        var b = document.querySelector(".b");
+        b.onclick = function(){
+
+            var tbody = document.querySelector("tbody");
+
+            for(var j = 1; j <= 4; j++){
+                var tr = document.createElement("tr");
+
+                for(var i = 1; i <= 4; i++){
+                    var td = document.createElement("td");
+                    var button = document.createElement("button");
+                    
+                    if(i === 1){
+                        td.innerHTML = j;
+                    }else if(i === 2 ){
+                        td.innerHTML = "첫글";
+                    }else if(i === 3 ){
+                        td.innerHTML = "hi";
+                    }else if(i === 4){
+                        button.innerHTML = "삭제";
+                        td.appendChild(button);
+                    }
+
+                    tr.appendChild(td);
+                }
+                tbody.appendChild(tr);
+            }
+        }
+    </script> -->
+    
+    <script>
+        //이벤트 - for문방식
+        // var btn = document.querySelectorAll("tbody button");
+        // console.log(btn);
+
+        // for(var i = 0; i < btn.length; i++){
+        //     btn[i].onclick = function(){
+        //         event.target.parentElement.parentElement.remove();
+        //     }
+        // }
+
+        //이벤트 - 위임방식
+        var tbody = document.querySelector(".tbody");
+
+        tbody.onclick = function(){
+            console.log( event.target)
+            if(event.target.tagName !== 'BUTTON') return;
+            event.target.parentElement.parentElement.remove();
+        }
+
+        
+
+
+    </script>
+</body>
+</html>
