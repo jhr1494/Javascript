@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <button type="button" class="aaa bbb stopInterval">STOP</button>
+    <script>
+        //setInterval()은 함수를 반복 실행
+        //첫번째 매개변수는 (실행할 함수, 인터벌 시간(밀리초기준))이 들어갑니다
+
+        // test("1");
+        // test(1);
+        // test([1,2,3]);
+        // test({"z" : 1});
+        // test(function() {});
+
+        // function test(a){
+        //     console.log(a);
+        // }
+
+        // setInterval( () => {}, 1000); //가독성이 낮음
+
+        var stop = setInterval(function() {
+            console.log(1);
+        }, 1000);
+
+        clearInterval(); //매개변수로 중지시키려는 함수를 넣습니다
+
+        var stopinterval = document.querySelector(".stopInterval");
+        stopinterval.onclick = function(){
+            clearInterval(stop); //매개변수로 중지시키려는 함수를 넣습니다
+        }
+
+
+    </script>
+
+
+
+
+</body>
+</html>

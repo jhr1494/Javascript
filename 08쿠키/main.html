@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 쿠키js 참조 -->
+    <script src="popup.js"></script>
+</head>
+<body>
+    
+    <h2>메인화면</h2>
+    
+    <script>
+        window.onload = function(){
+
+            //mainpop쿠키가 없는 경우에 팝업창을 실행
+            if(!getCookie("mainPop")){ //false -- 쿠키없음
+                
+                //open(팝업창경로, 이름, 옵션(문자열한줄로!))
+                window.open("popup.html", "메인팝업1", "width=300px, height=300px, top=200px, left=200px");
+            }
+
+        }
+    </script>
+
+
+
+</body>
+</html>

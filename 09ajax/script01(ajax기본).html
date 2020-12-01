@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button type="button" onclick="ajax()">비동기요청</button>
+
+    <script>
+
+        function ajax(){
+
+            fetch("hi.txt").then(function(response){
+                // console.log(response);
+
+                response.text().then(function(text){
+                    alert(text);
+                })
+            })
+        }
+    </script>
+</body>
+</html>

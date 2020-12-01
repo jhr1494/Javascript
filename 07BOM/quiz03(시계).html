@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            background-size: 100%;
+            color: white;
+            background-image: url("img/1.jpg");
+        }
+    </style>
+
+
+</head>
+<body data-img='{"1" : "img/1.jpg", "2" : "img/2.jpg", "3" : "img/3.jpg", "4" : "img/4.jpg"}'>
+    <!-- Object의 길이를 확인하는 문법은 검색 -->
+
+    <img class="bgImg"> <!-- 배경을 넣을 이미지 -->
+    <div class="clock">
+        <h3>00:00:00</h3>
+    </div>
+
+    <script>
+        var clock = document.querySelector(".clock h3");
+        //시계
+        setInterval(function(){
+            var date = new Date();
+            var hour = date.getHours();
+            var minute = date.getMinutes();
+            var second = date.getSeconds();
+            clock.innerHTML = hour + ":" + minute + ":" + second;
+        }, 1000);
+
+        //배경
+        var img = document.body.dataset.img;
+        var jsonImg = JSON.parse(img);
+        var key = 0;
+
+        setInterval(function(){
+
+            // console.log(jsonImg[++key]);
+            if(key == Object.keys(jsonImg).length){
+                key = 0;
+            };
+            document.body.style.backgroundImage = "url(" + jsonImg[++key] + ")";
+            
+        }, 10000);
+    </script>
+</body>
+</html>

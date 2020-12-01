@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 팝업창js 참조  -->
+    <script src="popup.js"></script>
+</head>
+<body>
+    
+    <div>
+        ...내용...
+    </div>
+    오늘하루 이창 열지 않기 <input type="checkbox">
+
+    <script>
+        var box = document.querySelector("input[type='checkbox']")
+
+        box.onclick = function(){
+            
+            if(box.checked){ //체크O
+                createCookie("mainPop");
+                window.close(); //팝업창 종료
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>

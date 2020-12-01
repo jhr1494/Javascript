@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tog li {display: inline-block;}
+        .tog-menu {display: none;}
+        .action {
+            display: block;
+            /* 호출할 애니메이션 , 지속시간, 옵션 */
+            animation: myfadein 1s ease-in-out;
+            }
+
+
+        /* 애니메이션 myfadein */
+        @keyframes myfadein{
+            from{
+                opacity: 0;
+            } to {
+                opacity: 1;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    
+
+    <section>
+        <ul class="tog">
+            <li data-id="#tog1">메뉴1</li> <!-- dataset 활용-->
+            <li data-id="#tog2">메뉴1</li>
+            <li data-id="#tog3">메뉴1</li>
+        </ul>
+    </section>
+
+    <!-- 매뉴에 따라서 보여줄 영역 -->
+    <div>
+        <div class="tog-menu" id = "tog1">토글메뉴1</div>
+        <div class="tog-menu" id = "tog2">토글메뉴2</div>
+        <div class="tog-menu active"id = "tog3">토글메뉴3</div>
+    </div>
+
+    <script>
+        /* 
+        이벤트 위임방식을 이용해서 이벤트를 처리합니다.
+        data-id값을 얻어서
+        각 아이디에 id에 적합한 태그 class이름에 active를 추가해즙니다.
+        나머지 tog-menu의 active는 지워줍니다.
+        contains(), add(), remove(클래스)등등 을 활용
+         */
+
+        var tog = document.querySelector(".tog");
+        tog.onclick = function(){
+            //만약 a캐그가 잇었으면 e.preventDefaul() 로 고유값 없애줘야함
+            console.log(event.target);
+            if(event.target.classNAme !== "LI") return;
+
+            //active가 포함된 태그애서 active를 전부 삭제.
+            var togList = document.querySelectorAll(".tog-menu");
+
+            for(var i = 0 ; i <togList.length; i++){
+                if(togList[i].classList.contains("active")  ){/* 클래스중 active가 포함된다면 */
+                    // console.dir(togList[i].classList);
+                    togList[i].className.remove("active");
+                }
+            };
+            
+            // 태그의 data-id를 얻어와서 현재 실행되는 대상에 add()추가
+            var target = event.target.dataset.id;
+            document.querySelector(target).classList.add("active");//클래스이름  active
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        img{max-width: 100%; height: auto;}
+
+        .bgImg{animation: fadein 1s linear;} /* 일정한속도 */
+        @keyframes fadein{
+            from{
+                opacity: 0;
+            }to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 슬라이드영역 -->
+    <div class="slide">
+        <img src="img/img1.jpg" class="bgImg">
+
+    </div>
+
+    <script>
+        var slide = document.querySelector(".slide"); //슬라이드 영역
+        var arr = ["img1.jpg", "img2.jpg", "img3.jpg", "img4.jpg"];
+        var index = 0;
+
+        function changeImg(){
+            //1. 이미지 생성
+            img = document.createElement("img");
+            img.src = "img/" + arr[++index];
+            // img.className = "bgImg";
+            img.classList.add("bgImg");
+
+            //2. 기존에 이미지 삭제
+            slide.children[0].remove(); //자식노드 삭제
+
+            //3. slide아래에 이미지 추가
+            slide.appendChild(img);
+
+            if(index === 3) index = -1;
+        }
+        //1. 즉시 실행 함수
+        (function(){
+            setInterval(changeImg, 2000); //2초마다 changeImg를 실행
+        })();
+    </script>
+    
+</body>
+</html>

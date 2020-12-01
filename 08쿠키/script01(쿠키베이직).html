@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    쿠키이름 : <input type="text" id="cookieName"><br/>
+    쿠키 값 : <input type="text" id="cookieValue"><br/>
+    쿠키 생성 : <button type="button" id="make">쿠키생성</button>
+
+    <hr/>
+    찾을 쿠키 : <input type="text" id="cookieFind">
+    <button type="button" id ="get">쿠키확인</button>
+
+    <script>
+        var make = document.getElementById("make");
+        make.addEventListener("click", createCookie);
+
+        function createCookie(){
+            var name = document.getElementById("cookieName").value;
+            var value = document.getElementById("cookieValue").value;
+
+            // console.log(name, value);
+
+            //문법을 외우지 마세요 ~!
+            //쿠키에 유지시간 생성(날짜를 이용해서 쿠키생성)
+            var date = new Date();
+            date.setDate(date.getDate() + 7); //만료시간 --- 현재 날짜로부터 7일 추가
+            // console.log(date);
+            
+            //쿠키에 저장할 문자열 생성 (형식을 반드시 지켜야 합니다)
+            var cookie = "";
+            cookie += name + "=" + value + ";"; //키=값
+            cookie += "expires=" + date.toUTCString(); //세계 표준시 형태로 붙여서 저장
+
+            // console.log(cookie);
+            //name=value;expires=Tue, 08 Dec 2020 06:21:39 GMT
+            // 꼭 이 형식이어야 함.
+
+            //document.cookie에 쿠키를 저장
+            document.cookie = cookie;
+
+        }
+            //쿠키확인하기
+            var get = document.getElementById("get");
+            get.addEventListener("click", getCookie);
+
+            function getCookie(){
+                //쿠키확인
+                console.log(document.cookie);
+
+                var find = document.getElementById("cookieFind").value //찾을 키값
+
+                var cookies = document.cookie.split("; "); //; 기준으로 쿠키문자를 분해
+                console.log(cookies);
+
+                for(var i in cookies){ //i는 index를 담는다
+                    
+                    //정확히 일치하는 값을 찾으면 찾은 위치를 반환, 없으면 -1을 반환
+                    // console.log(cookies[i].search(find));
+
+                    if(cookies[i].search(find) != -1){ //찾은경우 --- 정규표현식을 사용하는 것이 확실합니다 !
+                        console.log(cookies[i].replace(find+"=", ""));// 값 find= >> 공백으로 변경 
+                        return;
+                    }
+                }
+            }
+    </script>
+
+
+
+</body>
+</html>
