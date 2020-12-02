@@ -13,13 +13,83 @@
 
         function ajax(){
 
-            fetch("hi.txt").then(function(response){
-                // console.log(response);
+            //1st
+            // fetch("hi.txt").then(function(response){
+            //     // console.log(response);
 
-                response.text().then(function(text){
-                    alert(text);
-                })
+            //     response.text().then(function(text){
+            //         alert(text);
+            //     });
+            // });
+
+            /*
+            //Promise는 fetch를 사용했을 때, 결과에 대한 상태정보를 반환해주는 약속된 객체
+            - pending : 수행중
+            - fullfilled : 성공적 완료
+            - rejected : 실패
+            */
+            // var result = fetch("hi111.txt"); //fetch() --- 서버에 ()안의 데이터를 요청
+            // console.log(result);
+
+            //3nd
+            //1. 보통의 경우에는 요청받은 순서대로 처리되는데, ajax 다른함수의 실행과 동시에 실행됩니다
+            //즉, 순서를 보장하지 않습니다.
+            //2. 결과를 받아오면 then()약속된 함수안에 정의된 콜백함수에 그 실행결과를 넣어줍니다.
+            
+            // var callback = function(){
+            //     console.log("이게 먼저실행될까요 ?"); 
+            // }
+            // var r = fetch("hi.txt").then(callback); //Promise를 통해 상태정보 확인 후, 실행결과를 .then함수로 전달
+            // console.log(1); //순서를 보장하지 않음 ! --- fetch를 통해 요청하는 동안 먼저 실행 (ajax는 비동기(비순차적)입니다~!)
+            // console.log(2);
+
+            //4nd
+            // fetch("hi.txt").then(function(response){
+            //     // console.log( response.status ); //상태정보 -- 200  : 성공 /  404 : 찾을수 없음
+            //     if(response.status != 200){ //성공이 아니라면 ?
+            //         alert("네트워크상에 문제가 발생했습니다");
+            //         return;
+            //     };
+            //     // console.log(response);
+                
+            //     //응답객체의 text()는 문자열릐 형태로 결과를 바꿔서 then안의 콜백함수에 넣어줍니다
+            //     response.text().then(function(data){ //response에서 받은 결과를 문자열로 반환하여 then안의 함수로 전달
+            //         console.log(data);
+            //     });
+
+            // });
+
+            //5nd
+            // fetch("hi.json").then(function(response){
+            //     if(response.status != 200){
+            //         alert("네트워크상에 문제가 발생하였습니다");
+            //     }else{
+            //         //응답객체 내용이 json이라면 json()을 이용해서 결과를 받아서 사용할 수 있습니다.
+            //         response.json().then(function(data){
+            //             // console.log(data); //응답된 json형식을 data에 넣어서 출력
+            //             for(var i in  data){
+            //                 console.log(i); // 키 값 --- key
+            //                 console.log(data[i]); // 키 i 에 해당되는 값 --- value
+            //                 console.log(i + "의 값 : " + data[i]);
+            //             }
+            //         });
+            //     }
+            // });
+
+            //6nd --- 5nd를 간단하게 !
+            fetch("hi.json").then(function(response){
+                return response.json();
             })
+            .then(function(data){
+                return data.user_id; // kkk123
+            })
+            .then(function(data){
+                return data;
+            })
+            .then(function(data){
+                console.log(data);
+            });
+
         }
     </script>
 </body>

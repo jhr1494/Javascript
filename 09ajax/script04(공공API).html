@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        서울 데이터 포털
+        1. 사용하려는 데이터의 API 인증키 받기 - 52567277786a68723634664c615379
+        2. 문서를 확인하고 요청 인자값을 검토해야 합니다.
+        3. 데이터 처리량능 확인(한번에 최대 1,000건)
+        4. 선택옵션
+        
+    -->
+</body>
+
+    <select class="gu">
+        
+    </select>
+
+    <script>
+
+        function getFetch(gu){
+            fetch("http://openAPI.seoul.go.kr:8088/52567277786a68723634664c615379/json/PublicWiFiPlaceInfo/1/1000/"+ gu)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                console.log(data);
+            })
+        }
+
+        //셀렉트 이벤트
+        var handleSelect = document.querySelector(".gu")
+        handleSelect.addEventListener("change", function(){
+            //값 불러오기
+            // console.log(event.target.value);
+            // console.log(this.value);
+            // console.log(handleSelect.value);
+
+            getFetch(event.target.value); //이벤트가 발생할 때, 비동기 함수를 호출
+
+        });
+
+        //2. 구 생성구문
+        function createGu(){
+            var gu_list = new Array("도봉구", "노원구", "강북구", "은평구", "마포구",
+                                    "서대문구", "종로구", "중구", "성북구", "용산구",
+                                    "동대문구", "성동구", "중랑구", "광진구", "강서구",
+                                    "양천구", "구로구", "영등포구", "금천구", "동작구",
+                                    "관악구", "서초구", "강남구", "송파구", "강동구");
+            gu_list.sort(); //정렬
+            gu_list.unshift("선택"); //앞에 추가
+            // console.log(gu_list);
+
+            var gu = document.querySelector(".gu")
+            for(var i in gu_list){
+                var option = document.createElement("option"); //option엘리먼트 생성
+                option.innerHTML = gu_list[i]; //엘리먼트에 문자추가
+
+                gu.appendChild(option); //자식으로 추가
+            }
+        };
+
+        //1. 즉시실행함수
+        (function(){
+            createGu();
+            //getFetch();
+        })();
+    </script>
+</html>

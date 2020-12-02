@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 1. 카카오 SDK 호출(원격 or 다운 받아서 사용합니다) -->
+    <!-- <script src="js/kakaoSDK.js"></script> -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+</head>
+
+<body>
+
+    <a id="custom-login-btn" href="javascript:loginWithKakao()">
+        <img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222" />
+    </a>
+    <script>
+        //2. 카카오 SDK 초기화하기
+        Kakao.init('ec2db10c6081d261023a7701b3b8bfe6');
+        console.log(Kakao.isInitialized());
+
+        //3. 사용방법 확인 후, 코드를 해석해서 로그인 기능
+        function loginWithKakao() {
+            Kakao.Auth.login({
+                success: function (authObj) {
+                    //접근권한 - 어세스토큰을 저장(카카오 토큰할당에 관한 내용을 참조)
+                    // console.log(authObj);
+                    // var token = authObj.access_token;
+                    Kakao.Auth.setAccessToken(authObj.access_token);
+
+                    //4. 사용자 계정정보를 얻는 함수를 호출
+                    getInfo();
+                },
+                fail: function (err) {
+                    alert(JSON.stringify(err))
+                },
+            })
+        }
+
+        //사용자 계정정보를 얻는 기능
+        function getInfo() {
+            Kakao.API.request({ //해당 함수가 다시한번 카카오서버로 요청을해서 사용자정보를 콜백함수로 얻어옵니다
+                url: '/v2/user/me',
+                success: function (res) {
+                    console.log(res);
+
+                    //1. 이메일정보
+                    console.log(res.kakao_account.email);
+
+                    //2. 프로필 이미지
+                    console.log(res.properties.profile_image);
+
+                    //3. 닉네임
+                    console.log(res.properties.nickname);
+
+
+                },
+                fail: function (error) {
+                    alert('login success, but failed to request user information: ' + JSON.stringify(error))
+                },
+            })
+        }
+    </script>
+</body>
+
+</html>

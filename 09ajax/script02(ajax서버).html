@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{padding: 0px; margin: 0px;}
+        ul, li{list-style: none;}
+
+        .center{text-align: center; margin: 100px 0;}
+        .movieList{width: 80%; margin: 0 auto; overflow: hidden;}
+        .movieList .movie{width: 33.3333%; height: 300px; float: left; position: relative;}
+        .movie img{position: absolute; top: 0; left: 0; width: 100px;}
+        .inner{padding-left: 100px;}
+        .inner .genres{display: inline-block;}
+        .inner .summary{overflow: scroll; height: 100px;}
+    </style>
+</head>
+<body>
+
+        <div class="center">
+            <h3>영화 리스트 입니다</h3>
+        </div>
+        <!-- 데이터를 처리할 영역 -->
+        <div class="movieList">
+            <div class="movie">
+                <img src="#" >
+                <div class="inner">
+                    <h3 class="title">제목</h3>
+                    <h3 class="year">년도</h3>
+                    <ul class="genres">
+                        <li>장르1</li>
+                        <li>장르2</li>
+                    </ul>
+                    <p class="summary">내용...</p>
+                </div>
+            </div>
+        </div>
+    <script>
+        //https://yts-proxy.now.sh/list_movies.json
+        //연습해볼 주소 - https://yts.mx/api
+
+        function ajax(){
+            fetch("https://yts.mx/api/v2/list_movies.json?sort_by=year&limit=30").then(function(response){
+                // console.log(response);
+                if(response.status != 200){
+                    alert("서버와의 통신이 실패했습니다");
+                }else{
+                    return response.json();
+                }
+            })
+            .then(function(jsonData){
+                var data = jsonData.data.movies;
+                // console.log(jsonData);
+                // console.log(data);
+                // console.log(data.length);
+                
+                var movieList = document.querySelector(".movieList");
+                var tag = ""; //문자열의 형태로 누적할 변수
+                for(var i = 0; i < data.length; i++){
+                    var title = data[i].title;
+                    var year = data[i].year;
+                    var summary = data[i].summary;
+                    var genres = data[i].genres;
+                    var img = data[i].medium_cover_image;
+
+
+                    // console.log(title, year, summary, genres, img);
+
+                    tag += '<div class="movie">';
+                    tag += '<img src="'+ img +'" >';
+                    tag += '<div class="inner">';
+                    tag += '<h3 class="title">'+ title +'</h3>';
+                    tag += '<h3 class="year">'+ year +'</h3>';
+                    tag += '<ul class="genres">장르';
+                        for(var k in genres){
+                            tag += '<li>-'+ genres[k] +'</li>' ;
+                        }
+                    tag += '</ul>';
+                    tag += '<p class="summary">'+ summary +'</p>';
+                    tag += '</div>';
+                    tag += '</div>';
+                }//end for
+
+                // console.log(tag);
+                movieList.innerHTML = tag;
+            })
+        }
+
+
+        (function(){
+            ajax(); //호출
+        })();
+
+    </script>
+</body>
+</html>

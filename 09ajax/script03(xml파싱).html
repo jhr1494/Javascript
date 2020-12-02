@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        /*
+        예를 들어 공공데이터 포털에서 받아온 데이터가 xml문서인 경우
+        우리가 사용할 수 있도록 변환하는 작업을 해야하는데,
+        데이터 파싱 작업이라고 합니다.
+        xml문서를 파싱
+        (xml->문자열->xml
+        --- fetch에서 xml을 바로 땡겨올수 없기때문에 안에서 변환해주어야 합니다)
+        */
+
+        fetch("data.xml").then(function(response){
+            return response.text(); //1. text형식으로 변환
+        }).then(function(data){
+            // console.log(data); //문자열인 상태
+
+            return new DOMParser().parseFromString(data,"text/xml"); //2. 문자열을  xml형식으로 변환
+        }).then(function(data){
+            console.log(data); //xml인 상태
+
+            var result = data.getElementsByTagName("data"); //태그이름이 data인 엘리먼트
+
+            for(var i = 0; i < result.length; i++){
+                // console.log(result.item(i)); // = console.log(result[i]);
+                console.log(result.item(i).children[0].innerHTML);
+                console.log(result.item(i).children[1].innerHTML);
+                console.log(result.item(i).children[2].innerHTML);
+            }
+
+        })
+    </script>
+</body>
+</html>
