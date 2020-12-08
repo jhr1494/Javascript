@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 3. map관련된 SDK로드(키값을 전달합니다) -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs1scGKrF3henIG8_V_19vP2Z5M7wAiAQ&callback=initMap"
+        type="text/javascript"></script>
+
+    <!-- 2. 맵영역에 대한 스타일 설정 -->
+    <style>
+        #map {
+            height: 50%;
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 4. 맵영역 생성 -->
+    <div id="map"></div>
+
+    <script>
+        //1. 맵을 생성해주는 코드
+        let map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 10,
+            });
+
+            //5. 지도에 마커정보 추가하기
+            const marker = new google.maps.Marker({
+                position: { lat: -34.397, lng: 150.644 },
+                map: map,
+            });
+        }
+    </script>
+
+</body>
+
+</html>

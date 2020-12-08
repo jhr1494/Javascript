@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        /*
+        await : 기다리다
+        규칙 : async함수 안에서만 사용이 가능합니다.
+        */
+
+        function myfetch1(){
+            return new Promise(function(success, fail){
+                //5초뒤 실행 - 비동기적 실행
+                setTimeout(function(){
+                    success("첫번째 비동기 함수의 성공");
+                }, 5000);
+            });
+        };
+
+        function myfetch2(){
+            return new Promise(function(success, fail){
+                //1초뒤 실행 
+                setTimeout(function(){
+                    success("두번째 비동기 함수의 성공");
+                }, 1000);
+            });
+        };
+
+        function myfetch3(){
+            return new Promise(function(success, fail){
+                //3초뒤 실행 
+                setTimeout(function(){
+                    success("세번째 비동기 함수의 성공");
+                }, 3000);
+            });
+        };
+
+        //내가 만약 1번의 실행이 끝난 이후 2번을 실행시키고, 3번을 실행시키겠다 라면 ?
+        function test(){
+            myfetch1().then(function(response){
+                console.log(response);
+                myfetch2().then(function(response2){
+                    console.log(response2);
+                    myfetch3().then(function(response3){
+                        console.log(response3);
+                    })
+                })
+            })
+        }
+
+        (function(){
+            test();
+        })();
+        
+    </script>
+</body>
+</html>

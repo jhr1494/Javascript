@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //동기적 콜백 -> 매개변수로 전달받은 함수를 실행시, 순서대로 실행
+        //비동기적 콜백 -> 매개변수로 전달받은 함수를 실행시, 순서를 지키지 않고 실행
+        // window.setTimeout() //대표적인 비동기적 콜백함수
+
+        //동기적 콜백
+        function func1(a){
+            a();
+        }
+
+        //비동기적 콜백
+        function func2(a){
+            setTimeout(a, 2000);
+        }
+
+        //동기적 콜백확인
+        console.log(1);//1(동기적)
+        func1(function(){
+            console.log("hello world?");//2(동기적)
+        })
+        console.log(2);//3(동기적)
+
+        //비동기적 콜백확인
+        func2(function(){
+            console.log("hello world?2");//5(비동기적)
+        })
+        console.log(3);//4(비동기적)
+
+    </script>
+</body>
+</html>

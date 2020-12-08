@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        // console.log( fetch("~~~") );
+
+        /*
+        fetchAPI모형
+        myfetch를 호출했을 때 promise객체를 돌려주게 되고,
+        여러분은 then함수안에 결과를 콜백함수만 정의해주면
+        시간이 얼마나 걸리던, 콜백함수로 결과를 받을 수 있습니다.
+        */
+
+        // function myfetch(url){
+        //     console.log(url);
+        //     return new Promise(function(success, fail){
+        //         //비동기적 실행...
+        //         success("data.....");
+        //     });
+        // }
+
+        // myfetch("http://localhost:5502/~~~~~").then(function(response){
+        //     console.log(response);
+        // });
+        
+        //함수 앞에 async를 붙이면 함수의 return값을 promise로 변경해준다
+        //1. async키워드는 (비동기)뜻을 가지고, 함수에만 사용할 수 있습니다.
+        //2. retyrn값을 자동으로 promise로 변경해주는 역할을 합니다.
+        async function myfetch(url){
+            console.log(url);
+            return "data...";
+        }
+        
+        // var result = myfetch("~~~~"); //함수의 반환 결과 자체가 Promise객체로 변환됩니다.
+        // console.log(result);
+
+        myfetch("~~~~").then(function(data){
+            console.log(data);
+        });
+        
+
+
+    </script>
+</body>
+</html>

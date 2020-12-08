@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 맵 불러오기 -->
+    <!-- 라이브러리 불러오기 -->
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ec2db10c6081d261023a7701b3b8bfe6&libraries=services,clusterer,drawing"></script>
+
+    <style>
+        h2, .top{
+            margin: 0 auto;
+            text-align: center;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 공공데이터 포털 같은데서 API를 적용할 수 있는 주제를 선정 -->
+    <!-- Fetch를 이용해서 데이터를 받아온 다음에, API를 사용해서
+        간단하게 하나의 화면에서 데이터 처리 -->
+
+    <!-- 
+        내주변의 따릉이 공공자건거 실시간 대여정보
+        546f626b456a687237335772657174
+    -->
+
+    <h2>주변에 따릉이 찾기</h2>
+    
+    <div class="top">
+        <input type="text"  class="str" placeholder="검색할 위치">
+        <button type="button" id="search">검색</button>
+        <button type="button" id="myPosition">내 위치</button>
+        <p>
+        <div id="map" style="width:600px; height:500px; margin: 0 auto; padding: 20px;"></div>
+        </p>
+        
+    </div>
+    <script>
+        var myPosition = document.getElementById("myPosition");
+        var str = document.querySelector(".str");
+        var lat;
+        var lng;
+
+        
+        function getFetch(lat, lng) {
+            
+            //fetch
+            fetch("http://openapi.seoul.go.kr:8088/546f626b456a687237335772657174/json/bikeList/1/1000/")
+            .then(function (response) {
+                // console.log(response);
+                return response.json();
+            }).then(function (jsonData) {
+                // console.log(jsonData);
+                //데이터 분해
+                var data = jsonData.rentBikeStatus.row;
+                // console.log(data);
+
+                //지도생성
+                console.log(lat, lng);
+                var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+                var options = { //지도를 생성할 때 필요한 기본 옵션
+                    center: new kakao.maps.LatLng(lat, lng), //지도의 중심좌표.
+                    level: 3 //지도의 레벨(확대, 축소 정도)
+                };
+
+                var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+                //마커표기
+                var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; //마커이미지
+                for (var i = 0; i < data.length; i++) {
+                    var markLan = data[i].stationLatitude;
+                    var markLng = data[i].stationLongitude;
+                    var title = data[i].stationName;
+
+                    // 마커 이미지의 이미지 크기 입니다
+                    var imageSize = new kakao.maps.Size(24, 35);
+
+                    // 마커 이미지를 생성합니다    
+                    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+                    // 마커를 생성합니다
+                    var marker = new kakao.maps.Marker({
+                        map: map, // 마커를 표시할 지도
+                        position: new kakao.maps.LatLng(markLan, markLng), // 마커를 표시할 위치
+                        title: title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                        image: markerImage // 마커 이미지 
+                    });
+                }
+            });
+        }
+
+        //내 위치정보 클릭이벤트
+        myPosition.addEventListener("click", mPosition);
+
+        function mPosition() {
+            navigator.geolocation.getCurrentPosition(success, fail);
+        }
+        
+        function success(position) {
+            lat = position.coords.latitude;
+            lng = position.coords.longitude;
+            // console.log(lat, lng);
+            getFetch(lat, lng);
+        }
+
+        function fail() {
+            alert("내 위치가 전송되지 못했습니다");
+            return;
+        }
+
+
+        //키워드 장소검색
+
+
+        //즉시실행
+        (function () {
+            mPosition();
+        })();
+
+
+
+
+
+    </script>
+</body>
+
+</html>

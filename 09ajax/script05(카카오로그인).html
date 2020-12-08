@@ -14,7 +14,8 @@
 
     <a id="custom-login-btn" href="javascript:loginWithKakao()">
         <img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222" />
-    </a>
+    </a><br/>
+    <button onclick="kakaoLogout()">로그아웃</button>
     <script>
         //2. 카카오 SDK 초기화하기
         Kakao.init('ec2db10c6081d261023a7701b3b8bfe6');
@@ -38,21 +39,32 @@
             })
         }
 
+        //어세스 토큰을 만료시켜주는 로그아웃
+        function kakaoLogout() {
+            if (!Kakao.Auth.getAccessToken()) {
+                alert('Not logged in.')
+                return
+            }
+            Kakao.Auth.logout(function () {
+                alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken())
+            })
+        }
+
         //사용자 계정정보를 얻는 기능
         function getInfo() {
             Kakao.API.request({ //해당 함수가 다시한번 카카오서버로 요청을해서 사용자정보를 콜백함수로 얻어옵니다
                 url: '/v2/user/me',
-                success: function (res) {
-                    console.log(res);
+                success: function (data) {
+                    console.log(data);
 
                     //1. 이메일정보
-                    console.log(res.kakao_account.email);
+                    console.log(data.kakao_account.email);
 
                     //2. 프로필 이미지
-                    console.log(res.properties.profile_image);
+                    console.log(data.properties.profile_image);
 
                     //3. 닉네임
-                    console.log(res.properties.nickname);
+                    console.log(data.properties.nickname);
 
 
                 },
@@ -61,6 +73,7 @@
                 },
             })
         }
+        
     </script>
 </body>
 
